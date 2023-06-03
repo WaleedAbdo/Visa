@@ -1,0 +1,250 @@
+﻿@model LandingVm
+
+
+<div class="post d-flex flex-column-fluid" id="kt_post">
+    <div id="kt_content_container" class="container-xxl">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h3 class="card-title">Edit Landing</h3>
+            </div>
+            <form class="form" asp-controller="Landing" asp-action="Edit" method="post" enctype="multipart/form-data">
+
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <input type="hidden" asp-for="ImageName" value="@Model.ImageName" />
+
+
+                <br /><br />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <br /><br />
+
+                <div class="card-body">
+                    <div class="form-group py-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <!--begin::Label-->
+                                <label class="required fs-6 fw-bold mb-2" for="TitleAr">Arabic Title</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid"  asp-for="TitleAr"  />
+                                <!--end::Input-->
+                            </div>
+                            <div class="col-6">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-bold mb-2" for="TitleEn">
+                                    <span class="required">English Title</span>
+
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid"  asp-for="TitleEn" />
+                                <!--end::Input-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group py-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-bold mb-2" for="DescriptionEn">
+                                    <span class="required">English Description</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <textarea type="text" class="form-control form-control-solid" rows="4" asp-for="DescriptionEn"></textarea>
+                                <!--end::Input-->
+                            </div>
+                            <div class="col-6">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-bold mb-2" for="DescriptionAr">
+                                    <span class="required">Arabic Description</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <textarea type="text" class="form-control form-control-solid" rows="4" asp-for="DescriptionAr"></textarea>
+                                <!--end::Input-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group py-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-bold mb-2" for="VideoTitleAr">
+                                    <span class="required">Arabic Video Title</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid" asp-for="VideoTitleAr" id="VideoTitleAr" />
+                                <!--end::Input-->
+                            </div>
+                            <div class="col-6">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-bold mb-2" for="VideoTitleEn">
+                                    <span class="required">English Video Title</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid" asp-for="VideoTitleEn" id="VideoTitleEn" />
+                                <!--end::Input-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group py-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-bold mb-2" for="Image">
+                                    <span class="required">Upload Image</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="file" class="form-control form-control-solid" asp-for="Image" />
+                                <img src="~/Files/Imgs/@Model.ImageName" width="50" height="50" />
+                            </div>
+                            <div class="col-6">
+                                <label for="" class="form-label">Country:</label>
+                                <select class="form-select form-select-solid" data-control="select2"
+                                        data-placeholder="Select Country" asp-for="CountryId">
+                                    <option>--Select--</option>
+                                    <option value="1">Malizia</option>
+                                    <option value="2">eGYPT</option>
+                                    <option value="3">Australia</option>
+                                    <option value="4">Austria</option>
+                                    <option value="5">Azerbaijan</option>
+                                    <option value="6">Bahamas</option>
+                                    <option value="7">Bahrain</option>
+                                    <option value="8">Bangladesh</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                @*    Faqustion*@
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h3 class="card-title">Add FA Qustions</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <!--begin::Table-->
+                        <table class="table align-middle table-row-dashed fs-6 gy-5 FQA_Table" id="kt_customers_table">
+                            <!--begin::Table head-->
+                            <thead>
+                                <!--begin::Table row-->
+                                <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                    <th class="min-w-125px">QuestionAr</th>
+                                    <th class="min-w-125px">AnswerAR</th>
+                                    <th class="min-w-125px">QuestionEn </th>
+                                    <th class="min-w-125px">AnswerEn</th>
+
+
+                                    @*<th class="text-end min-w-70px">
+                                        <input type="button" id="FQA" class="btn btn-primary" value="Add FQA" />
+                                    </th>*@
+                                </tr>
+                                <!--end::Table row-->
+                            </thead>
+                            <!--end::Table head-->
+                            <!--begin::Table body-->
+                            <!--end::Table body-->
+                            <tbody>
+                                @for (int i = 0; i < Model.FaQuestion.Count; i++)
+                                {
+                                <tr>
+                                    <td><input type="text" class="form-control form-control-solid" asp-for="FaQuestion[i].QuestionAr" /></td>
+                                    <td><input type="text" class="form-control form-control-solid" asp-for="FaQuestion[i].AnswerAr" /></td>
+                                    <td><input type="text" class="form-control form-control-solid" asp-for="FaQuestion[i].QuestionEn" /></td>
+                                    <td><input type="text" class="form-control form-control-solid" asp-for="FaQuestion[i].AnswerEn" /></td>
+                                    <td>
+                                        <input type="hidden" asp-for="FaQuestion[i].Id" value="@Model.FaQuestion[i].Id" />
+                                    </td>
+                                </tr>
+                                 }
+                            </tbody>
+                        </table>
+                        <!--end::Table-->
+                    </div>
+
+                </div>
+
+                <br /><br />
+
+                @*stampedvisa*@
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h3 class="card-title">Add The StampedVisa </h3>
+                    </div>
+
+                    <div class="card-body">
+                        <!--begin::Table-->
+                        <table class="table align-middle table-row-dashed fs-6 gy-5 STV_Table" id="kt_customers_table">
+                            <!--begin::Table head-->
+                            <thead>
+                                <!--begin::Table row-->
+                                <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                    <th class="min-w-125px">TitleAr</th>
+                                    <th class="min-w-125px">TitleEn</th>
+                                    <th class="min-w-125px">Image </th>
+                                    <td></td>
+                                    <th class="min-w-125px">Step</th>
+
+
+                                    @*<th class="text-end min-w-70px">
+                                        <input type="button" id="STV" class="btn btn-primary" value="Add Stamped Visa" />
+                                    </th>*@
+
+                                </tr>
+                                <!--end::Table row-->
+                            </thead>
+                            <!--end::Table head-->
+                            <!--begin::Table body-->
+                            <!--end::Table body-->
+                            <tbody>
+                                @for (int i = 0; i < Model.StampedVisa.Count; i++)
+                                {
+                                <tr>
+                                    <td><input type="text" class="form-control form-control-solid" asp-for="StampedVisa[i].TitleAr" /></td>
+                                    <td><input type="text" class="form-control form-control-solid" asp-for="StampedVisa[i].TitleEn" /></td>
+                                    <td>
+                                        <input type="file" class="form-control form-control-solid" asp-for="StampedVisa[i].Image" />
+                                    </td>
+                                    <td>
+                                        <img src="~/Files/Imgs/@Model.StampedVisa[i].ImageName" width="50" height="50" />
+                                    </td>
+                                    <td>
+                                        <select class="form-select form-select-solid" data-control="select2"
+                                                data-placeholder="Select Country" asp-for="StampedVisa[i].StepId" asp-items="(SelectList)ViewBag.StepList">
+                                            <option>--Select--</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" asp-for="StampedVisa[i].Id" value="@Model.StampedVisa[i].Id" />
+                                    </td>
+                                    <td>
+                                        <input type="hidden" asp-for="StampedVisa[i].ImageName" value="@Model.StampedVisa[i].ImageName" />
+                                    </td>
+                                </tr>
+                                    }
+                                </tbody>
+                        </table>
+                        <!--end::Table-->
+
+                    </div>
+                </div>
+
+                <br /> <br />
+                <center>
+                    <input type="submit" value="Update" class="btn btn-lg btn-primary" />
+                    <input type="reset" value="Clear" class="btn btn-lg btn-warning" />
+                </center>
+                <br /> <br />
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
